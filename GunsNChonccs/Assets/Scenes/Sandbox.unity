@@ -217,7 +217,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &221737238
 GameObject:
@@ -324,7 +324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
       propertyPath: m_LocalScale.x
@@ -332,6 +332,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
       propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
@@ -650,22 +654,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
-  dodge:
-    m_Name: Dodge
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: d575fd5f-b9d3-4c20-91dc-f36684d1229e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 66508d7f-00d0-4dd5-9156-ea0945fa7f78
-      m_Path: <Keyboard>/leftShift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Dodge
-      m_Flags: 0
   turning:
     m_Name: Turning
     m_Type: 1
@@ -684,7 +672,6 @@ MonoBehaviour:
       m_Flags: 0
   speed: 3
   mouseSens: 10
-  canDodge: 1
 --- !u!54 &1153114601
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -701,34 +688,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!1 &1753032353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 66ef947c87a3d7942872c32b90ed0815, type: 3}
-  m_PrefabInstance: {fileID: 311449587}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1753032354
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753032353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.787962, y: 0.4224756, z: 2.1746593}
-  m_Center: {x: -0.10968566, y: 0.28876233, z: 0.0038855076}
---- !u!65 &1753032356
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753032353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.36744553, z: 0.61697793}
-  m_Center: {x: 0, y: 0.9698124, z: 0.027523637}
