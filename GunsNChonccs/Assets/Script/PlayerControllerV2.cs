@@ -31,6 +31,8 @@ public class PlayerControllerV2 : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
 
+
+        //Lock the cursor & make gooes invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
