@@ -8,20 +8,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [Header("Player inputs")]
     public InputAction movement;
-    public InputAction dodge;
     [SerializeField] private InputAction turning;
 
-
-    [Header("Public floats")]
-    public float speed = 3f;
+    [SerializeField] private float speed = 3f;
     public float mouseSens = 100f;
 
-    [Header("Bools")]
-    public bool canDodge = true;
-
     [Header("Misc")]
-    private Camera cam = null;
     Rigidbody rb;
+    private Camera cam = null;
     private float camRotation = 0;
 
 
@@ -41,7 +35,6 @@ public class PlayerControllerV2 : MonoBehaviour
         //So we can activate our inputs
         movement.Enable();
         turning.Enable();
-        dodge.Enable();
     }
 
     void OnDisable()
@@ -49,7 +42,6 @@ public class PlayerControllerV2 : MonoBehaviour
         //So we can disable our inputs
         movement.Disable();
         turning.Disable();
-        dodge.Disable();
     }
     void Update()
     {
@@ -66,15 +58,8 @@ public class PlayerControllerV2 : MonoBehaviour
         //Using transform.right & forward because it won't be stuck at those axis when the player rotates around.
         Vector3 direction = transform.right * x + transform.forward * z;
 
-        //if dodge's value is above 0 & canDodge is true, then the character will dodge. Otherwise move normally
-        if(dodge.ReadValue<float>() > 0 && canDodge )
-        {
-            rb.AddForce(transform.forward * 500 + transform.up * 200 );
-            canDodge = false;
-        }else
-        {
-            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-        }
+        //Moving
+        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
     }
 
     public void Turn()
