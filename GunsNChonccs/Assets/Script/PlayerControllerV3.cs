@@ -3,63 +3,59 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-public class PlayerControllerV2 : MonoBehaviour
+public class PlayerControllerV3 : MonoBehaviour
 {
+    // Actions etc
+    public InputActionAsset playerControls;
+    private InputAction movement;
+    private InputAction turning;
 
-    [Header("Player inputs")]
-    public InputAction movement;
-    public InputAction interact;
-    [SerializeField] private InputAction turning;
-
-    [SerializeField] private float speed = 3f;
     public float mouseSens = 100f;
 
-    [Header("Misc")]
+
+    //Misc
     Rigidbody rb;
+    private float speed = 3f;
+
     private Camera cam = null;
     private float camRotation = 0;
 
+    private void Awake()
+    {
+        var playerActionMap = playerControls.FindActionMap("PlayerInputs");
 
+        movement = playerActionMap.FindAction("Movement");
+        turning = playerActionMap.FindAction("Turning");
 
-    void Start()
+    }
+
+    public void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
 
-
-        //Lock the cursor & make gooes invisible
+        //Lock the cursor & and cursor goes invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-    void OnEnable()
-    {
-        //So we can activate our inputs
-        movement.Enable();
-        turning.Enable();
+
+      
     }
 
-    void OnDisable()
+    public void Update()
     {
-        //So we can disable our inputs
-        movement.Disable();
-        turning.Disable();
-    }
-    void Update()
-    {
-        //This should be self explanatory right now.
         Move();
         Turn();
     }
+
     public void Move()
     {
         //Gets the input axis (Similiar to GetInputAxis Horizontal & Vertical)
         float x = movement.ReadValue<Vector2>().x;
         float z = movement.ReadValue<Vector2>().y;
 
-        //Using transform.right & forward because it won't be stuck at those axis when the player rotates around.
+        //Using transform.right & forward because it won't become stuck at those axis once the player rotates around.
         Vector3 direction = transform.right * x + transform.forward * z;
 
-        //Moving
         rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
     }
 
@@ -69,12 +65,28 @@ public class PlayerControllerV2 : MonoBehaviour
         float mouseX = turning.ReadValue<Vector2>().x * mouseSens * Time.deltaTime;
         float mouseY = turning.ReadValue<Vector2>().y * mouseSens * Time.deltaTime;
 
-        //Honestly, I forgot what the hell this do, but it works.
+        //Ngl I didnt write anything here about how these two lines work but its something with math...
         camRotation -= mouseY;
         camRotation = Mathf.Clamp(camRotation, -90, 90);
 
-        //Camera rotates with the cursor or some shit.
+        //Camera rotates with the cursor
         cam.transform.localRotation = Quaternion.Euler(camRotation, 0, 0);
         transform.Rotate(Vector3.up * mouseX);
     }
+
+    private void OnEnable()
+    {
+        // So we can activate our inputs
+        movement.Enable();
+        turning.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // So we can deactivate our inputs
+        movement.Disable();
+        turning.Disable();
+    }
+
+
 }
