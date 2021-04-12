@@ -9,6 +9,7 @@ public class PlayerControllerV3 : MonoBehaviour
     public InputActionAsset playerControls;
     private InputAction movement;
     private InputAction turning;
+    private InputAction reload;
 
     public float mouseSens = 100f;
 
@@ -22,10 +23,11 @@ public class PlayerControllerV3 : MonoBehaviour
 
     private void Awake()
     {
-        var playerActionMap = playerControls.FindActionMap("PlayerInputs");
+       var playerActionMap = playerControls.FindActionMap("PlayerInputs");
 
         movement = playerActionMap.FindAction("Movement");
         turning = playerActionMap.FindAction("Turning");
+        reload = playerActionMap.FindAction("Interact");
 
     }
 
@@ -88,5 +90,16 @@ public class PlayerControllerV3 : MonoBehaviour
         turning.Disable();
     }
 
+    public void reloaded(InputAction.CallbackContext context)
+    {
+      if(context.started)
+      {
+            Debug.Log("reloaded key used");
+      }
+      else
+      {
+            Debug.Log("Gun not found");
+      }
+    }
 
 }
