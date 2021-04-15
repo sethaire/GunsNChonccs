@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerControllerV3 : MonoBehaviour
 {
-    // Actions etc
+    [Header("InputActions")]
     public InputActionAsset playerControls;
+
+    private InputAction shootKey;
+    private InputAction reload;
+
     private InputAction movement;
     private InputAction turning;
-    private InputAction reload;
 
     public float mouseSens = 100f;
 
@@ -23,11 +26,13 @@ public class PlayerControllerV3 : MonoBehaviour
 
     private void Awake()
     {
-       var playerActionMap = playerControls.FindActionMap("PlayerInputs");
+        //var playerActionMap = playerControls.FindActionMap("PlayerInputs");
 
-        movement = playerActionMap.FindAction("Movement");
-        turning = playerActionMap.FindAction("Turning");
-        reload = playerActionMap.FindAction("Interact");
+
+        shootKey = playerControls.FindAction("ShootKey");
+        movement = playerControls.FindAction("Movement");
+        turning = playerControls.FindAction("Turning");
+        reload = playerControls.FindAction("Interact");
 
     }
 
@@ -95,10 +100,6 @@ public class PlayerControllerV3 : MonoBehaviour
       if(context.started)
       {
             Debug.Log("reloaded key used");
-      }
-      else
-      {
-            Debug.Log("Gun not found");
       }
     }
 

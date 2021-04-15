@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "Normalize(min=1,max=1)",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "ShootKey",
+                    "type": "PassThrough",
+                    "id": "949461e6-c2f8-4c84-ae85-83c8e35eff57",
+                    "expectedControlType": "Button",
+                    "processors": "Normalize(min=1,max=1)",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
@@ -105,6 +113,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a631e165-e0e7-4595-a3d8-a46e6e181728",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
