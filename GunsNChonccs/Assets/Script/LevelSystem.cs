@@ -5,17 +5,29 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     public float expUntilLevelUp = 100;
+
     public float currentLevel = 1;
     public float currentEXP;
-    
-    void Start()
-    {
-        
-    }
+    private float levelModifier = 1.20f;
 
-    // Update is called once per frame
-    void Update()
+    private float tempEXP;
+
+    public float totalEXPGained;
+    
+
+    public void expGain (float experience)
     {
-        
+        currentEXP += experience;
+        totalEXPGained += experience;
+
+        if(currentEXP >= expUntilLevelUp)
+        { 
+            tempEXP = currentEXP - expUntilLevelUp;
+            expUntilLevelUp = expUntilLevelUp * levelModifier;
+
+            currentEXP = 0 + tempEXP;
+            currentLevel += 1;
+
+        }
     }
 }

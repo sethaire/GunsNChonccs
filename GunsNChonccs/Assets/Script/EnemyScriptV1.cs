@@ -5,22 +5,21 @@ using UnityEngine;
 public class EnemyScriptV1 : MonoBehaviour
 {
     public float health = 100;
-    void Start()
-    {
-        
-    }
+    public float experience = 100;
 
-    // Update is called once per frame
-    void Update()
+    private GameObject Tracker;
+
+    void Awake()
     {
-        
+        Tracker = GameObject.FindGameObjectWithTag("Tracker");
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if(health == 0)
+        if(health <= 0)
         {
+            Tracker.GetComponent<LevelSystem>().expGain(experience);
             Destroy(gameObject);
         }
     }
