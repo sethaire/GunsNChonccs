@@ -7,11 +7,10 @@ public class EnemyScriptV1 : MonoBehaviour
     public float health = 100;
     public float experience = 100;
 
-    private GameObject Tracker;
+    public GameObject Tracker;
 
     void Awake()
     {
-        Tracker = GameObject.FindGameObjectWithTag("Tracker");
     }
 
     public void TakeDamage(float damage)

@@ -13,21 +13,23 @@ public class LevelSystem : MonoBehaviour
     private float tempEXP;
 
     public float totalEXPGained;
-    
 
     public void expGain (float experience)
     {
         currentEXP += experience;
         totalEXPGained += experience;
 
-        if(currentEXP >= expUntilLevelUp)
-        { 
+        while(currentEXP >= expUntilLevelUp)
+        {
             tempEXP = currentEXP - expUntilLevelUp;
-            expUntilLevelUp = expUntilLevelUp * levelModifier;
+            expUntilLevelUp = expUntilLevelUp * levelModifier; //pissråtor.
+
+            expUntilLevelUp = Mathf.Round(expUntilLevelUp);
 
             currentEXP = 0 + tempEXP;
+            currentEXP = Mathf.Round(currentEXP);
             currentLevel += 1;
-
         }
+
     }
 }
