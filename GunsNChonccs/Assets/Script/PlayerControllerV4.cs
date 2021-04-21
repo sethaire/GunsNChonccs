@@ -16,12 +16,14 @@ public class PlayerControllerV4 : MonoBehaviour
 
     public float mouseSens = 100f;
 
+    public Transform player;
+
 
     //Misc
-    Rigidbody rb;
+    public Rigidbody rb;
     private float speed = 3f;
 
-    private Camera cam = null;
+    public Camera cam = null;
     private float camRotation = 0;
 
     private void Awake()
@@ -38,8 +40,8 @@ public class PlayerControllerV4 : MonoBehaviour
 
     public void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        cam = Camera.main;
+        //rb = GetComponent<Rigidbody>();
+        //cam = Camera.main;
 
         //Lock the cursor & and cursor goes invisible
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,7 +63,7 @@ public class PlayerControllerV4 : MonoBehaviour
         float z = movement.ReadValue<Vector2>().y;
 
         //Using transform.right & forward because it won't become stuck at those axis once the player rotates around.
-        Vector3 direction = transform.right * x + transform.forward * z;
+        Vector3 direction = player.right * x + player.forward * z;
 
         rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
     }
@@ -78,7 +80,7 @@ public class PlayerControllerV4 : MonoBehaviour
 
         //Camera rotates with the cursor
         cam.transform.localRotation = Quaternion.Euler(camRotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
+        player.Rotate(Vector3.up * mouseX);
     }
 
     private void OnEnable()
