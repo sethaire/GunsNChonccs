@@ -14,16 +14,22 @@ public class PlayerControllerV4 : MonoBehaviour
     private InputAction movement;
     private InputAction turning;
 
+    [Header("Modifier")]
     public float mouseSens = 100f;
 
-    public Transform player;
+    public float speedModifier = 1f;
 
 
     //Misc
     public Rigidbody rb;
-    private float speed = 3f;
+    public Transform player;
 
-    public Camera cam = null;
+
+    private float speed = 3f;
+    private float jumpforce = 200f;
+    
+
+    Camera cam = null;
     private float camRotation = 0;
 
     private void Awake()
@@ -34,14 +40,13 @@ public class PlayerControllerV4 : MonoBehaviour
         shootKey = playerControls.FindAction("ShootKey");
         movement = playerControls.FindAction("Movement");
         turning = playerControls.FindAction("Turning");
-        reload = playerControls.FindAction("Interact");
 
     }
 
     public void Start()
     {
         //rb = GetComponent<Rigidbody>();
-        //cam = Camera.main;
+        cam = Camera.main;
 
         //Lock the cursor & and cursor goes invisible
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,7 +70,7 @@ public class PlayerControllerV4 : MonoBehaviour
         //Using transform.right & forward because it won't become stuck at those axis once the player rotates around.
         Vector3 direction = player.right * x + player.forward * z;
 
-        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + direction * speed * speedModifier * Time.deltaTime);
     }
 
     public void Turn()
@@ -83,6 +88,15 @@ public class PlayerControllerV4 : MonoBehaviour
         player.Rotate(Vector3.up * mouseX);
     }
 
+    public void Jump(InputAction.CallbackContext context)
+    {
+        //if context.started then the player will jump
+        if(context.started)
+        {
+            rb.AddForce(player.up * jumpforce);
+        }
+    }
+
     private void OnEnable()
     {
         // So we can activate our inputs
@@ -97,12 +111,5 @@ public class PlayerControllerV4 : MonoBehaviour
         turning.Disable();
     }
 
-    public void reloaded(InputAction.CallbackContext context)
-    {
-      if(context.started)
-      {
-            Debug.Log("reloaded key used");
-      }
-    }
 
 }

@@ -18,9 +18,9 @@ public class Ammo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag ("Cube"))
+        if (collision.gameObject.CompareTag ("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyScriptV1>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyScriptV2>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

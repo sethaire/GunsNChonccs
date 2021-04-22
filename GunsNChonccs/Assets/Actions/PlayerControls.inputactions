@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "a5886eae-3f3c-495c-b0d4-ae8712a4993b",
+                    "expectedControlType": "Button",
+                    "processors": "Normalize(min=1,max=1)",
+                    "interactions": "Tap"
+                },
+                {
                     "name": "Turning",
                     "type": "Button",
                     "id": "dac5ec98-9186-4ad1-875e-4702a09ad7f2",
@@ -124,6 +132,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShootKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cb6d848-21ca-43df-8c7d-944898c48b74",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

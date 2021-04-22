@@ -18,7 +18,7 @@ public class GunScriptV1 : MonoBehaviour
       
     }
 
-    public void shooting(InputAction.CallbackContext context)
+    public void Shooting(InputAction.CallbackContext context)
     { 
         if(context.started)
         {
