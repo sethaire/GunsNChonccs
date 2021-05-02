@@ -6,6 +6,7 @@ using UnityEngine;
 public class GunScriptV1 : MonoBehaviour
 {
     public GameObject projectile;
+    public Transform gunTip;
     [SerializeField] private float shootForce = 100f;
     void Start()
     {
@@ -22,8 +23,8 @@ public class GunScriptV1 : MonoBehaviour
     { 
         if(context.started)
         {
-            GameObject shot = GameObject.Instantiate(projectile, transform.position, transform.rotation);
-            shot.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce);
+            GameObject shot = GameObject.Instantiate(projectile, gunTip.position, gunTip.rotation);
+            shot.GetComponent<Rigidbody>().AddForce(gunTip.forward * shootForce);
         }
     }
 }
