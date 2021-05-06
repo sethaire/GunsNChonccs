@@ -8,21 +8,21 @@ public class PlayerControllerV4 : MonoBehaviour
     [Header("InputActions")]
     public InputActionAsset playerControls;
 
-    private InputAction shootKey;
-    private InputAction reload;
-
     private InputAction movement;
     private InputAction turning;
 
     [Header("Modifier")]
     public float mouseSens = 100f;
-
     public float speedModifier = 1f;
 
 
     //Misc
     public Rigidbody rb;
     public Transform player;
+
+    public Transform groundChecker;
+    public float groundRad;
+    public LayerMask groundlayer;
 
 
     private float speed = 3f;
@@ -34,10 +34,7 @@ public class PlayerControllerV4 : MonoBehaviour
 
     private void Awake()
     {
-        //var playerActionMap = playerControls.FindActionMap("PlayerInputs");
 
-
-        shootKey = playerControls.FindAction("ShootKey");
         movement = playerControls.FindAction("Movement");
         turning = playerControls.FindAction("Turning");
 
